@@ -2,12 +2,14 @@
 
 namespace App\Controller;
 
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
-class HomeController extends AbstractController
+
+class PropertyController extends AbstractController
 {
+
     /**
      * @var Environment
      */
@@ -18,10 +20,12 @@ class HomeController extends AbstractController
         $this->twig = $twig;
     }
 
+
     public function index(): Response
     {
-        return new Response(
-            $this->twig->render('pages/home.html.twig')
-        );
+
+        return $this->render('property/index.html.twig', [
+            'current_menu' => 'properties'
+        ]);
     }
 }
