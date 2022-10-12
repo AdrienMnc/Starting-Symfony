@@ -9,6 +9,12 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: PropertyRepository::class)]
 class Property
 {
+
+    const HEAT = [
+        0 => 'electric',
+        1 => 'gaz'
+    ];
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
