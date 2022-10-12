@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\PropertyRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Flex\Options;
 
 #[ORM\Entity(repositoryClass: PropertyRepository::class)]
 class Property
@@ -54,10 +55,15 @@ class Property
     private ?string $postal_code = null;
 
     #[ORM\Column]
-    private ?bool $sold = null;
+    private ?bool $sold = false;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $created_at = null;
+
+    public function __construct()
+    {
+        $this->created_at = new \DateTime();
+    }
 
     public function getId(): ?int
     {

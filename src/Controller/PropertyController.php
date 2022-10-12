@@ -6,7 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 use App\Entity\Property;
-use phpDocumentor\Reflection\DocBlock\Description;
+use Doctrine\Persistence\ManagerRegistry;
+
 
 class PropertyController extends AbstractController
 {
@@ -21,9 +22,9 @@ class PropertyController extends AbstractController
         $this->twig = $twig;
     }
 
-    public function index(): Response
+    public function index(ManagerRegistry $doctrine): Response
     {
-
+        $entityManager = $doctrine->getManager();
         $property = new Property();
         $property->setTitle('Mon premier bien')
             ->setPrice(price: 200000)
@@ -32,7 +33,13 @@ class PropertyController extends AbstractController
             ->setDescription(description: 'Une petite description')
             ->setSurface(surface: 60)
             ->setFloor(floor: 4)
-            ->setHeat(heat: 1);
+            ->setHeat(heat: 1)
+            ->setCity(city: 'Nice')
+            ->setAdress(adress: '6 rue cimiez')
+            ->setPostalCode(postal_code: '06000');
+
+        $entityManager->persist($property);
+        $entityManager->flush();
 
 
         return $this->render('property/index.html.twig', [
