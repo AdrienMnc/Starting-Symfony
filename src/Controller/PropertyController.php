@@ -24,22 +24,24 @@ class PropertyController extends AbstractController
 
     public function index(ManagerRegistry $doctrine): Response
     {
-        $entityManager = $doctrine->getManager();
-        $property = new Property();
-        $property->setTitle('Mon premier bien')
-            ->setPrice(price: 200000)
-            ->setRooms(rooms: 4)
-            ->setBedrooms(bedrooms: 3)
-            ->setDescription(description: 'Une petite description')
-            ->setSurface(surface: 60)
-            ->setFloor(floor: 4)
-            ->setHeat(heat: 1)
-            ->setCity(city: 'Nice')
-            ->setAdress(adress: '6 rue cimiez')
-            ->setPostalCode(postal_code: '06000');
+        // $entityManager = $doctrine->getManager();
+        // $property = new Property();
+        // $property->setTitle('Mon premier bien')
+        //     ->setPrice(price: 200000)
+        //     ->setRooms(rooms: 4)
+        //     ->setBedrooms(bedrooms: 3)
+        //     ->setDescription(description: 'Une petite description')
+        //     ->setSurface(surface: 60)
+        //     ->setFloor(floor: 4)
+        //     ->setHeat(heat: 1)
+        //     ->setCity(city: 'Nice')
+        //     ->setAdress(adress: '6 rue cimiez')
+        //     ->setPostalCode(postal_code: '06000');
 
-        $entityManager->persist($property);
-        $entityManager->flush();
+        // $entityManager->persist($property);
+        // $entityManager->flush();
+
+        // test
 
 
         return $this->render('property/index.html.twig', [
